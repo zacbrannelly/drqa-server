@@ -17,7 +17,7 @@ class ProcessQuestion(Stage):
     def operate(self, data, config):
         # Attempt to process the question from input_data
         try:
-            result = self.processor.process(data.input_data, None, 1, 1)
+            result = self.processor.process(data.input_data, None, config['topAnswers'], config['numDocuments'])
             data.output_data = { 'question': data.input_data, 'answer': result[0]['span'] }
         except:
             data.output_data = None

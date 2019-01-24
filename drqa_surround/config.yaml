@@ -1,2 +1,5 @@
 output:
   text: Hello World
+
+numDocuments: 1
+topAnswers: 1
