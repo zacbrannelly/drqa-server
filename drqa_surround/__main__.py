@@ -40,6 +40,20 @@ def init_surround(config_path):
 def home():
     return 'This is a server not for your eyes obviously'
 
+@app.route('/ask', methods=['GET'])
+def ask_test():
+    question = "Where is Batman?"
+
+    if 'question' in request.args:
+        question = request.args['question']
+    
+    # Process the question
+    data = DrqaData(question)
+    surround.process(data)
+
+    return 'Question: ' + question + '<br />Answer: ' + data.output_data
+
+
 @app.route('/ask', methods=['POST'])
 def ask():
     form_data = request.form
