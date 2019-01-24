@@ -51,7 +51,7 @@ def ask_test():
     data = DrqaData(question)
     surround.process(data)
 
-    return 'Question: ' + question + '<br />Answer: ' + data.output_data
+    return 'Question: ' + data.output_data['question'] + '<br />Answer: ' + data.output_data['answer']
 
 
 @app.route('/ask', methods=['POST'])
