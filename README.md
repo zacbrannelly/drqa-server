@@ -14,5 +14,5 @@ Server used to provide answers to questions posted by the Virtual Receptionist p
 - Use the command `tar -xvf data.tar.gz` to extract the dataset
 - When done you can delete `data.tar.gz`to save some space 
 - Next clone this repository into the `DrQA` folder: `git clone https://github.com/zacbran/drqa-server.git` 
-- Now you can start the server using the command: `python3.5 drqa-server/flask_server.py`
+- Now you can start the server using the command: `python3.5 -m drqa-server.drqa_surround -c drqa-server/drqa_surround/config.yaml`
 - **NOTE**: It is important the script is run from the `DrQA` folder, not the `drqa-server` folder
