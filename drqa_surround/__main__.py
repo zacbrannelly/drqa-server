@@ -3,7 +3,7 @@ import argparse
 import os
 from flask import Flask, request, make_response, jsonify
 from surround import Surround, Config
-from drqa.stages import ValidateData, DrqaData, ProcessQuestion
+from drqa_surround.stages import ValidateData, DrqaData, ProcessQuestion
 
 logging.basicConfig(level=logging.INFO)
 
@@ -27,13 +27,14 @@ app = Flask(__name__)
 surround = None
 
 def init_surround(config_path):
-    surround = Surround([ValidateData(), ProcessQuestion()])
+    surround = Surround([ProcessQuestion(), ValidateData()])
 
     # Read config file
     config = Config()
     config.read_config_files([config_path])
     surround.set_config(config)
 
+    return surround
 
 @app.route('/')
 def home():
@@ -55,6 +56,8 @@ def ask():
     # Get the question answer
     output = data.output_data
 
+    print (output)
+
     # Convert output dict to JSON and send back
     return make_response(jsonify(output)) 
 
@@ -62,7 +65,7 @@ def ask():
 if __name__ == "__main__":
     # Initialize surround and it's stages
     args = parser.parse_args()
-    init_surround(args.config_path)
+    surround = init_surround(args.config_file)
 
     # Run the flask server to receive input
     app.run("0.0.0.0", 80)
