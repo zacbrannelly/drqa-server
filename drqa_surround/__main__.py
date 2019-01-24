@@ -3,7 +3,7 @@ import argparse
 import os
 from flask import Flask, request, make_response, jsonify
 from surround import Surround, Config
-from drqa_surround.stages import ValidateData, DrqaData, ProcessQuestion
+from .stages import ValidateData, DrqaData, ProcessQuestion
 
 logging.basicConfig(level=logging.INFO)
 
